@@ -99,4 +99,20 @@ public class CheckoutTests
         // Assert
         Assert.Equal(100, total); // 50 + 30 + 20
     }
+
+    [Fact]
+    public void Scan_ThreeAs_AppliesSpecialOffer()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(130, total); // Special offer: 3 for 130 instead of 150
+    }
 }
