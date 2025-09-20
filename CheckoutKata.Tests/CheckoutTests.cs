@@ -186,4 +186,36 @@ public class CheckoutTests
         Assert.Equal(total1, total2); // Order shouldn't matter
         Assert.Equal(95, total1); // A=50 + 2B's=45 = 95
     }
+
+    [Fact]
+    public void Scan_InvalidSku_IgnoresSilently()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan("X"); // Invalid SKU
+        checkout.Scan("B");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(80, total); // A=50 + B=30, X ignored
+    }
+
+    [Fact]
+    public void Scan_EmptyString_IgnoresSilently()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan(""); // Empty string
+        checkout.Scan("B");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(80, total); // A=50 + B=30, empty string ignored
+    }
 }
