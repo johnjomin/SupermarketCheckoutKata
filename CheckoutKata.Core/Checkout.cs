@@ -1,6 +1,6 @@
 namespace CheckoutKata.Core;
 
-public class Checkout
+public class Checkout : ICheckout
 {
     private readonly IPricingRules _pricingRules;
     private readonly Dictionary<string, int> _itemCounts = new();
