@@ -2,51 +2,32 @@ namespace CheckoutKata.Core;
 
 public class Checkout
 {
-    private int _countA = 0;
-    private int _countB = 0;
-    private int _countC = 0;
-    private int _countD = 0;
+    private readonly IPricingRules _pricingRules;
+    private readonly Dictionary<string, int> _itemCounts = new();
+
+    public Checkout() : this(new BasicPricingRules())
+    {
+    }
+
+    public Checkout(IPricingRules pricingRules)
+    {
+        _pricingRules = pricingRules;
+    }
 
     public void Scan(string item)
     {
-        if (item == "A")
+        if (_itemCounts.ContainsKey(item))
         {
-            _countA++;
+            _itemCounts[item]++;
         }
-        else if (item == "B")
+        else
         {
-            _countB++;
-        }
-        else if (item == "C")
-        {
-            _countC++;
-        }
-        else if (item == "D")
-        {
-            _countD++;
+            _itemCounts[item] = 1;
         }
     }
 
     public int GetTotalPrice()
     {
-        int total = 0;
-
-        // Item A: 50 each, 3 for 130
-        int specialOfferA = _countA / 3;
-        int remainingA = _countA % 3;
-        total += specialOfferA * 130 + remainingA * 50;
-
-         // Item B: 30 each, 2 for 45
-        int specialOfferB = _countB / 2;
-        int remainingB = _countB % 2;
-        total += specialOfferB * 45 + remainingB * 30; 
-
-        // Item C: 20 each
-        total += _countC * 20;
-
-        // Item D: 15 each
-        total += _countD * 15;
-
-        return total;
+        return _pricingRules.CalculatePrice(_itemCounts);
     }
 }
