@@ -130,4 +130,37 @@ public class CheckoutTests
         // Assert
         Assert.Equal(45, total); // Special offer: 2 for 45 instead of 60
     }
+
+    [Fact]
+    public void Scan_FourAs_AppliesSpecialOfferPlusOne()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(180, total); // 3 for 130 + 1 for 50 = 180
+    }
+
+    [Fact]
+    public void Scan_ThreeBs_AppliesSpecialOfferPlusOne()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("B");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(75, total); // 2 for 45 + 1 for 30 = 75
+    }
 }
