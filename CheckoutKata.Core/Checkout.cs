@@ -10,6 +10,18 @@ public class Checkout
         {
             _totalPrice += 50;
         }
+        else if (item == "B")
+        {
+            _totalPrice += 30;
+        }
+        else if (item == "C")
+        {
+            _totalPrice += 20;
+        }
+        else if (item == "D")
+        {
+            _totalPrice += 15;
+        }
     }
 
     public int GetTotalPrice()
