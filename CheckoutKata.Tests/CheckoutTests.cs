@@ -218,4 +218,28 @@ public class CheckoutTests
         // Assert
         Assert.Equal(80, total); // A=50 + B=30, empty string ignored
     }
+
+    [Fact]
+    public void Checkout_WithCustomPricingRules_UsesInjectedRules()
+    {
+        // Arrange
+        var customPricing = new TestPricingRules(); // custom pricing rule object that cost 10
+        var checkout = new Checkout(customPricing);
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan("B");
+        checkout.Scan("C");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(30, total); // 3 items * 10 each = 30
+    }
+
+    [Fact]
+    public void Checkout_WithNullPricingRules_ThrowsArgumentNullException()
+    {
+        // Arrange, Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Checkout(null));
+    }
 }
