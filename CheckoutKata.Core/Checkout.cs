@@ -36,8 +36,10 @@ public class Checkout
         int remainingA = _countA % 3;
         total += specialOfferA * 130 + remainingA * 50;
 
-        // Item B: 30 each
-        total += _countB * 30;
+         // Item B: 30 each, 2 for 45
+        int specialOfferB = _countB / 2;
+        int remainingB = _countB % 2;
+        total += specialOfferB * 45 + remainingB * 30; 
 
         // Item C: 20 each
         total += _countC * 20;
