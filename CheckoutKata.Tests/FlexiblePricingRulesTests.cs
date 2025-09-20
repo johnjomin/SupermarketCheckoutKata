@@ -25,7 +25,7 @@ public class FlexiblePricingRulesTests
 
         // Assert
         Assert.Equal(basicTotal, flexibleTotal);
-        Assert.Equal(200, flexibleTotal); // 130 + 45 + 20 + 15
+        Assert.Equal(210, flexibleTotal); // 130 + 45 + 20 + 15
     }
 
     [Fact]

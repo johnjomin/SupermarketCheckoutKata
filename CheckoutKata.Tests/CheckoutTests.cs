@@ -240,6 +240,6 @@ public class CheckoutTests
     public void Checkout_WithNullPricingRules_ThrowsArgumentNullException()
     {
         // Arrange, Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new Checkout(null));
+        Assert.Throws<ArgumentNullException>(() => new Checkout(null!));
     }
 }
