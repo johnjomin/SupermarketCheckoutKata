@@ -1,0 +1,17 @@
+# Build outputs
+bin/
+obj/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+
+# Test results
+TestResults/
+
+# VS Code
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
