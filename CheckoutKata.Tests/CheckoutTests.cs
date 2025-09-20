@@ -1,3 +1,4 @@
+using CheckoutKata.Core;
 using Xunit;
 
 namespace CheckoutKata.Tests;
