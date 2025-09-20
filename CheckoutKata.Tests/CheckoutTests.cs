@@ -83,4 +83,20 @@ public class CheckoutTests
         // Assert
         Assert.Equal(15, total);
     }
+
+    [Fact]
+    public void Scan_MultipleItems_AccumulatesCorrectly()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("A");
+        checkout.Scan("B");
+        checkout.Scan("C");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(100, total); // 50 + 30 + 20
+    }
 }
