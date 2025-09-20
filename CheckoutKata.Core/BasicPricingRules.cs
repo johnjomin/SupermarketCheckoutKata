@@ -6,7 +6,7 @@ namespace CheckoutKata.Core;
 public class BasicPricingRules : IPricingRules
 {
     /// <inheritdoc />
-    public int CalculatePrice(Dictionary<string, int> itemCounts)
+    public int CalculatePrice(IReadOnlyDictionary<string, int> itemCounts)
     {
         if (itemCounts == null)
             throw new ArgumentNullException(nameof(itemCounts));
