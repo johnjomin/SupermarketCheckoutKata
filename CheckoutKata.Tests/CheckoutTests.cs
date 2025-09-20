@@ -41,4 +41,46 @@ public class CheckoutTests
         // Assert
         Assert.Equal(50, total);
     }
+
+    [Fact]
+    public void Scan_SingleItemB_Returns30()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("B");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(30, total);
+    }
+
+    [Fact]
+    public void Scan_SingleItemC_Returns20()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("C");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(20, total);
+    }
+
+    [Fact]
+    public void Scan_SingleItemD_Returns15()
+    {
+        // Arrange
+        var checkout = new Checkout();
+
+        // Act
+        checkout.Scan("D");
+        var total = checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(15, total);
+    }
 }
