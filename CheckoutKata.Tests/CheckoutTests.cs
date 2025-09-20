@@ -163,4 +163,27 @@ public class CheckoutTests
         // Assert
         Assert.Equal(75, total); // 2 for 45 + 1 for 30 = 75
     }
+
+    [Fact]
+    public void Scan_ItemsInDifferentOrder_SameTotal()
+    {
+        // Arrange
+        var checkout1 = new Checkout();
+        var checkout2 = new Checkout();
+
+        // Act
+        checkout1.Scan("B");
+        checkout1.Scan("A");
+        checkout1.Scan("B");
+        var total1 = checkout1.GetTotalPrice();
+
+        checkout2.Scan("A");
+        checkout2.Scan("B");
+        checkout2.Scan("B");
+        var total2 = checkout2.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(total1, total2); // Order shouldn't matter
+        Assert.Equal(95, total1); // A=50 + 2B's=45 = 95
+    }
 }
