@@ -4,6 +4,9 @@ public class BasicPricingRules : IPricingRules
 {
     public int CalculatePrice(Dictionary<string, int> itemCounts)
     {
+        if (itemCounts == null)
+            throw new ArgumentNullException(nameof(itemCounts));
+
         int totalPrice = 0;
 
         foreach (var item in itemCounts)

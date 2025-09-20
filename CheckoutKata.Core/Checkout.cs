@@ -11,19 +11,18 @@ public class Checkout : ICheckout
 
     public Checkout(IPricingRules pricingRules)
     {
-        _pricingRules = pricingRules;
+        _pricingRules = pricingRules ?? throw new ArgumentNullException(nameof(pricingRules));
     }
 
     public void Scan(string item)
     {
+        if (string.IsNullOrWhiteSpace(item))
+            return; // Ignore invalid input
+
         if (_itemCounts.ContainsKey(item))
-        {
             _itemCounts[item]++;
-        }
         else
-        {
             _itemCounts[item] = 1;
-        }
     }
 
     public int GetTotalPrice()
